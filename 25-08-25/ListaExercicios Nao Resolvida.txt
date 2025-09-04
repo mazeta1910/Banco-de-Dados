@@ -1,0 +1,28 @@
+LISTA DE EXERCÍCIOS BANCO DE DADOS 01
+1) Exiba todos os atributos da tabela empregado ordenando por salário e nome
+
+2) Exiba o nome e o salário dos empregados que tem salário entre 2 e 3 mil.
+
+3) Exiba os dependentes que são filhos, que nasceram entre 10 de abril de 1994 e 15 de maio de 2000 e que são do sexo masculino.
+
+4) Exiba todos os dependentes que tem 'MARIA' em qualquer parte do nome.
+
+5) Exiba os departamentos cujo o nome tem 10 caracteres.
+
+6) Exiba todos os empregados que possuem supervisor.
+
+7) Exiba todos os empregados que não possum supervisor.
+
+8) Exiba uma listagem unica com todos os nomes dos empregadados e dependentes, caso existe nome respetidos, ambos devem ser exibidos.
+
+9) Exiba os empregados que possuem dependentes ou que trabalham em algum projeto.
+
+10) Exiba os empregados que tem salário maior que 4 mil e que não tem supervisor
+
+11) Exiba os empregados que possuem o João Luiz como supervisor
+
+12) Exiba os empregados que trabalham no projeto Motor3
+
+13) Exiba o nome dos empregados que trabalharam mais de uqe 5 horas no projeto Prédio Central.
+
+14) Exiba o departamento que é generenciado pelo empregado Ricardo.

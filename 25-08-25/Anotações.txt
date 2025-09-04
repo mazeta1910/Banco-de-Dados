@@ -1,0 +1,4 @@
+AULA BANCO DE DAD0S 25/08/2025
+-- ORDENAÇÃO (ORDER BY)
+	select nome from empregado
+	order by nome
