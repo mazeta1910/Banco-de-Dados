@@ -1,0 +1,124 @@
+Funções Agregadas
+	São funções que formam uma coleção de valores como entrada e retornam um valor simples. O SQL fornece 5 funções agregadas.
+
+1 - Média (average) AVG
+	Select AVG (salario) from empregado
+
+2 - Minimo (minimum) MIN
+	Select MIN (salario) from empregado
+
+3 - Maximo (maximum) MAX
+	Select MAX(salario) from empregado
+
+4 - Total SUM
+	Select SUM(salario) from EMPREGADO
+
+5 - Contagem COUNT
+	select COUNT(*) from empregado;
+
+SUM E AVG precisam de entrada de dados numericos. MIN, MAX E COUNT podem operar dados não numéricos.
+O resultado é uma tabela com um unico atributo e uma única linha.
+
+GROUP BY -> É utilizado quando precisamos aplicar uma função agregada a um conjunto de tuplas. Os atributos fornecidos na clausula group by são utilizados para formar grupos.
+	Tuplas com os mesmos valores em todos os atributos da clausula group by são colocados no mesmo grupo. Exemplo: encontra a média salarial por departamento
+		SELECT '''''D.NOME''''', AVG(E.SALARIO) FROM EMPREGADO EMPREGADO ---- O NOME DO QUE VC QUER AGRUPAR SEMPRE SERÁ O GROUP BY
+		INNER JOIN DEPARTAMENTO DEPARTAMENTO
+		ON E.DEPARTAMENTO = D.NUMERO
+		GROUP BY ''''''D.NOME''''' -- PODE VER AQUI
+	Obs: As repetições são importantes para cálculos, mas se quisermos eliminar as repetições devemos utilizar DISTINCT. 
+
+Exemplo: Quantos funcionários por departamento possuem dependentes?
+	SELECT D.NOME, COUNT(DISTINCT DEP.RGRESPONSAVEL) FROM EMPREGADO E
+	INNER JOIN DEPARTAMENTO D
+		WHERE E.DEPARTAMENTO = D.NUMERO
+	INNER JOIN DEPENDENTE DEP
+		ON DEP.RGRESPONSAVEL = E.RGRESPONSAVEL
+	GROUP BY D.NOME
+
+HAVING -> Utilizado quando as condições são apliacadas ao grupo ao invés de aplicá-las as tuplas. Exemplo: encontre os departamentos que possuem média salarial maior que 2 mil reais.
+	SELECT D.NOME, AVG(SALARIO)
+	FROM EMPREGADO EMPREGADO
+	JOIN DEPARTAMENTO D ON E.DEPARTAMENTO=D.NUMERO
+	GROUP BY D.NOME
+	HAVING AVG(E.SALARIO)>2000
+	
+VALORES NULOS -> Indicam ausência de valor. As funções agregadas exceto COUNT(*) ignoram os valores nulos dos seus conjuntos de valores de entrada. 
+Exemplo:
+	SELECT COUNT (RG.SUPERVISOR) FROM EMPREGADO
+	SELECT COUNT(*) FROM EMPREGADO
+	
+OPERADORES ARITMÉTICOS (+,-,/,*)
+SELECT (SALARIO+SALARIO*1.5)/SALARIO/2 
+FROM EMPREGADO
+
+Funções matemáticas:
+	- sqrt (float)
+	- square (float)
+	- exp (float)
+	- abs (numero)
+	- pi ()
+	- power(numero, potencia)
+	- rand(expressao)
+
+Exemplo: 
+	SELECT PI(),
+	SELECT POWER (5,2)
+	SELECT SQUARE (SALARIO) FROM EMPREGADO;
+
+Manipulação de datas:
+	As datas são divididas em partes: 
+		- year = YY, YYYY
+		- month = MM, M
+		- day of year = dy, Y
+		- day = dd, d
+		- week = wk, ww
+		- hour = hh
+		- minute = mi, m
+		- second = ss, s
+		- millisecond = ms
+	Funções de manipulação de datas:
+		- dateadd(parte, numero, data)
+		- datediff(parte, data-inicial, data-final)
+		- getdate()
+		- datepart(parte, data)
+		- datename(parte, data)
+	Exemplos:
+		SELECT DATEADD(DD, 45, GETDATE())
+		SELECT DATEDIFF(YYYY, '01-01-1985', GETDATE())
+		SELECT DATEPART(MS, '28-10-2024 23:45:30.360')
+		SELECT DATENAME(WEEKDAY, GETDATE())+' , '+
+			DATENAME(DAY,GETDATE())+' de '+
+			DATENAME(MONTH,GETDATE())+' de '+
+			DATENAME(YEAR,GETDATE()) as DATA
+			
+Conversão de tipos de dados:
+	CAST(CAMPO AS TIPO[TAMANHO])
+
+	Exemplo:
+		SELECT CAST(DTNASCIMENTO AS char(8)) 
+			FROM DEPENDENTE
+			CONVERT(TIPO[TAMANHO],CAMPO)
+	Exemplo: 
+		SELECT CONVERT(char(8), DTNASCIMENTO) FROM DEPENDENTE
+
+Manipulação de Strings:
+	- len(sting)
+		select len('string')
+	- lower(string)
+		select lower('string')
+	- upper(string)
+		select upper('string')
+	- replicate(string, integer)
+		select replicate('a', 5)
+	- reverse(string)
+		select reverse('string')
+	- space(numero)
+		select space(10)
+	- substring (string, inicio, tamanho)
+		select substring('BANCO DE ADOS', 10,5)
+	- coalesce (string, texto_sbustituto)
+		select coalesce(convert (char(8), rg_supervisor), 'I')
+		from empregado
+	- rtrim(string)
+	- ltrim(string)
+	- stuff (string, X, Y, string a inserir apagando os Y caracteres a partir da posição X)
