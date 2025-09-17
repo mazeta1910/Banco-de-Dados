@@ -122,3 +122,11 @@ Manipulação de Strings:
 	- rtrim(string)
 	- ltrim(string)
 	- stuff (string, X, Y, string a inserir apagando os Y caracteres a partir da posição X)
+	
+Quer todos de A, mesmo sem B? → LEFT JOIN
+
+Quer todos de B, mesmo sem A? → RIGHT JOIN
+
+Quer apenas quem tem nos dois? → INNER JOIN
+
+Quer tudo de ambos? → FULL JOIN
