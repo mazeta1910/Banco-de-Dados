@@ -10,9 +10,13 @@ FROM TREINADORES
 ORDER BY data_post;
 
 INSERT INTO Treinadores(nome, data_post)
-VALUES ('Vitor Pereira', '2025-05-03')
+VALUES ('Hernán Crespo', '2025-09-21')
 
 SELECT TOP 15 nome, COUNT(nome) AS 'Número de Posts'
 FROM TREINADORES
 GROUP BY nome
 ORDER BY COUNT(nome) DESC;
+
+SELECT id_treinador, Nome
+FROM Treinadores
+ORDER BY id_treinador DESC;
